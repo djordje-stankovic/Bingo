@@ -13,6 +13,7 @@
     "axios": "^1.5.0",
     "cheerio": "^1.0.0-rc.12",
     "node-cron": "^3.0.2",
-    "puppeteer": "^21.3.5"
+    "puppeteer": "^21.3.5",
+    "simple-git": "^3.20.0"
   }
 }

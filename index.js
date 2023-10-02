@@ -1,6 +1,8 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const cron = require('node-cron');
+const simpleGit = require('simple-git');
+
 
 
 function myTask() {
@@ -15,7 +17,7 @@ function myTask() {
         let mainGameCekano = false;
         //ovde ide {headless: 'new'} ako hoces da se ne pali brow
         await delay(30000); // Sačekaj 20 sekundi
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch({ headless: 'new' });
         
         
         const page = await browser.newPage();
@@ -24,7 +26,7 @@ function myTask() {
         try { //{ timeout: 130000, waitUntil: 'domcontentloaded' }
             await page.goto('https://lucky-betting.mozzartbet.com/lucky6-web/', { timeout: 50000 }); //await page.goto('https://lucky-betting.mozzartbet.com/lucky6-web/');
             await page.waitForTimeout(3000);
-            await page.reload();
+            // await page.reload();
             await page.waitForTimeout(3000);
             const game = '.game';
             const mainGameSelector = '.main-game';
@@ -139,7 +141,21 @@ function myTask() {
                 fs.writeFile('output.txt', sviBrojevi.join('\n'), (err) => {
                     if (err) throw err;
                     console.log('Dodan red sa novom listom u datoteku.');
+                   
+     
                 });
+                const git = simpleGit();
+                (async () => {
+                    try {
+                      await git.add('output.txt');
+                      await git.commit('Dodat novi red u output.txt');
+                      await git.push();
+                      console.log('Dodao na git');
+                    } catch (error) {
+                      console.error('Greška pri slanju na git:', error);
+                    }
+                  })()
+                
             });
 
             await browser.close();
