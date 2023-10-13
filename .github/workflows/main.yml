@@ -26,9 +26,9 @@ jobs:
 
     - name: Commit and Push Changes
       run: |
-        git config --global user.name 'GitHub Actions'
-        git config --global user.email 'actions@github.com'
-        git add .
+        git config --global user.name 'Djordje Stankovic'
+        git config --global user.email 'djordje.stankovic992@gmail.com'
+        git add output.txt
         git commit -m "Automated task execution"
         git push
 
