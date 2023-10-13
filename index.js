@@ -17,8 +17,11 @@ function myTask() {
         let mainGameCekano = false;
         //ovde ide {headless: 'new'} ako hoces da se ne pali brow
         await delay(30000); // Sačekaj 20 sekundi
-        const browser = await puppeteer.launch({ headless: 'new' });
-        
+        const browser = await puppeteer.launch({
+            headless: 'new',
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+            env: { TZ: 'Europe/Belgrade' }  // Postavite vremensku zonu na Beograd
+          });
         
         const page = await browser.newPage();
         await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36");
@@ -35,7 +38,8 @@ function myTask() {
                 const goldElements = await page.$$eval('.gold', (elements) => {
                     return elements.map((el) => el.textContent.trim());
                 });
-                const currentDate = new Date();
+                const currentDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Belgrade' }));
+
                 const options = {
                     day: 'numeric',
                     month: 'numeric',
