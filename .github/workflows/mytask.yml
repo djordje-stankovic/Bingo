@@ -28,7 +28,7 @@ jobs:
       run: |
         git config --global user.name 'Djordje Stankovic'
         git config --global user.email 'djordje.stankovic992@gmail.com'
-        git add .
+        git add output.txt
         git commit -m "Automated task execution"
         git push
 
