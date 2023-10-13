@@ -63,18 +63,6 @@ function myTask() {
             const mainGameDiv = await page.$('.main-game');
             console.log('Sacekao main game');
             if (mainGameDiv) {
-                //Bubanj
-                // const drumBoxWrapDiv = await mainGameDiv.$('.drumBoxWrap');
-                // if (drumBoxWrapDiv) {
-                //     const imgElements = await drumBoxWrapDiv.$$('img');
-                //     for (const imgElement of imgElements) {
-                //         const imgSrc = await imgElement.evaluate((el) => el.getAttribute('src'));
-                //         const parts = imgSrc.split('/');
-                //         const lastPart = parts[parts.length - 1];
-                //         const number = lastPart.split('.')[0];
-                //         console.log(number);
-                //         numbers.push(number);
-                //     }
                 const drumBoxWrapDiv = await mainGameDiv.$('.drumBoxWrap');
                 if (drumBoxWrapDiv) {
                     const firstFiveDivs = await drumBoxWrapDiv.$$('.first-five');
@@ -172,4 +160,4 @@ function myTask() {
 myTask();
 
 
-cron.schedule('*/5 * * * *', myTask);
+//cron.schedule('*/5 * * * *', myTask);
