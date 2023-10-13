@@ -138,16 +138,16 @@ function myTask() {
      
                 });
                 const git = simpleGit();
-                // (async () => {
-                //     try {
-                //       await git.add('output.txt');
-                //       await git.commit('Dodat novi red u output.txt');
-                //       await git.push();
-                //       console.log('Dodao na git');
-                //     } catch (error) {
-                //       console.error('Greška pri slanju na git:', error);
-                //     }
-                //   })()
+                (async () => {
+                    try {
+                      await git.add('output.txt');
+                      await git.commit('Dodat novi red u output.txt');
+                      await git.push();
+                      console.log('Dodao na git');
+                    } catch (error) {
+                      console.error('Greška pri slanju na git:', error);
+                    }
+                  })()
                 
             });
 
@@ -165,4 +165,4 @@ function myTask() {
 myTask();
 
 
-//cron.schedule('*/5 * * * *', myTask);
+cron.schedule('*/5 * * * *', myTask);
