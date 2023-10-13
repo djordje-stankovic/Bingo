@@ -40,7 +40,8 @@ function myTask() {
                     day: 'numeric',
                     month: 'numeric',
                     year: 'numeric',
-                    hour12: false
+                    hour12: false,
+                    timeZone: 'Europe/Belgrade'
                 };
                 const formattedDateTime = currentDate.toLocaleDateString('sr-RS', options);
                 console.log(goldElements);
@@ -133,16 +134,16 @@ function myTask() {
      
                 });
                 const git = simpleGit();
-                (async () => {
-                    try {
-                      await git.add('output.txt');
-                      await git.commit('Dodat novi red u output.txt');
-                      await git.push();
-                      console.log('Dodao na git');
-                    } catch (error) {
-                      console.error('Greška pri slanju na git:', error);
-                    }
-                  })()
+                // (async () => {
+                //     try {
+                //       await git.add('output.txt');
+                //       await git.commit('Dodat novi red u output.txt');
+                //       await git.push();
+                //       console.log('Dodao na git');
+                //     } catch (error) {
+                //       console.error('Greška pri slanju na git:', error);
+                //     }
+                //   })()
                 
             });
 
