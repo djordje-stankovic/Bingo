@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const cron = require('node-cron');
 const simpleGit = require('simple-git');
+const { Console } = require('console');
 
 
 
@@ -57,6 +58,7 @@ function myTask() {
                     vremeIgriceCekano = true;
                 }
             }
+            
             console.log('Cekam main game');
             if (!mainGameCekano) {
                 console.log('uso i cekam main game')
@@ -123,31 +125,26 @@ function myTask() {
             }
            
 
-            fs.readFile('output.txt', 'utf8', (err, data) => {
+            fs.readFile('outputNovi2.txt', 'utf8', (err, data) => {
                 if (err) throw err;
-
                 const sviBrojevi = data.split('\n');
                 console.log(numbers);
                 sviBrojevi.push(numbers.join(','));
-
-
-                fs.writeFile('output.txt', sviBrojevi.join('\n'), (err) => {
+                fs.writeFile('outputNovi2.txt', sviBrojevi.join('\n'), (err) => {
                     if (err) throw err;
                     console.log('Dodan red sa novom listom u datoteku.');
-                   
-     
                 });
-                const git = simpleGit();
-                (async () => {
-                    try {
-                      await git.add('output.txt');
-                      await git.commit('Dodat novi red u output.txt');
-                      await git.push();
-                      console.log('Dodao na git');
-                    } catch (error) {
-                      console.error('Greška pri slanju na git:', error);
-                    }
-                  })()
+                // const git = simpleGit();
+                // (async () => {
+                //     try {
+                //       await git.add('outputNovi2.txt');
+                //       await git.commit('Dodat novi red u output.txt');
+                //       await git.push();
+                //       console.log('Dodao na git');
+                //     } catch (error) {
+                //       console.error('Greška pri slanju na git:', error);
+                //     }
+                //   })()
                 
             });
 
